@@ -3,13 +3,17 @@
  */
 package uni1a;
 
+import java.util.ArrayList;
+
 // Subclase Documental que extiende de ContenidoAudiovisual
 public class Documental extends ContenidoAudiovisual {
     private String tema;
+    private ArrayList<Investigador> investigadores;
 
     public Documental(String titulo, int duracionEnMinutos, String genero, String tema) {
         super(titulo, duracionEnMinutos, genero);
         this.tema = tema;
+        this.investigadores = new ArrayList<>();
     }
 
     public String getTema() {
@@ -19,15 +23,23 @@ public class Documental extends ContenidoAudiovisual {
     public void setTema(String tema) {
         this.tema = tema;
     }
-    
+
+    public void agregarInvestigadores(String nombre) {
+        investigadores.add(new Investigador(nombre));
+    }
+
     @Override
     public void mostrarDetalles() {
-        System.out.println("Detalles de la película:");
+        System.out.println("Detalles del Documental:");
         System.out.println("ID: " + getId());
         System.out.println("Título: " + getTitulo());
         System.out.println("Duración en minutos: " + getDuracionEnMinutos());
         System.out.println("Género: " + getGenero());
         System.out.println("Tema: " + this.tema);
+        System.out.print("Investigadores: ");
+        for (Investigador indice: investigadores) {
+            System.out.print("[" + indice.getNombre() + "] ");
+        }
         System.out.println();
     }
 }
